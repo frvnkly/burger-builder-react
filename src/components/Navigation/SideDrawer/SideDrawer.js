@@ -9,7 +9,7 @@ const sideDrawer = props => {
   let attachedClasses = [classes.SideDrawer, classes.Close];
   if (props.open) {
     attachedClasses = [classes.SideDrawer, classes.Open];
-  }
+  };
 
   return (
     <React.Fragment>
@@ -24,6 +24,6 @@ const sideDrawer = props => {
       </div>
     </React.Fragment>
   );
-}
+};
 
 export default sideDrawer;
