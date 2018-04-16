@@ -19,7 +19,7 @@ class BurgerBuilder extends Component {
   state = {
     ingredients: null,
     totalPrice: 4,
-    purchaseable: false,
+    purchasable: false,
     purchasing: false,
     loading: false,
     error: false,
@@ -70,7 +70,7 @@ class BurgerBuilder extends Component {
     const sum = Object.keys(ingredients)
       .map(igKey => ingredients[igKey])
       .reduce((sum, el) => sum + el, 0);
-    this.setState({ purchaseable: sum > 0 });
+    this.setState({ purchasable: sum > 0 });
   };
 
   purchaseHandler = () => {
@@ -115,7 +115,7 @@ class BurgerBuilder extends Component {
             ingredientAdded={this.addIngredientHandler}
             ingredientRemoved={this.removeIngredientHandler}
             disabled={disabledInfo}
-            purchaseable={this.state.purchaseable}
+            purchasable={this.state.purchasable}
             ordered={this.purchaseHandler}
             price={this.state.totalPrice} />
         </React.Fragment>;
