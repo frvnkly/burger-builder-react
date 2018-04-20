@@ -14,32 +14,46 @@ const initialState = {
 };
 
 const reducer = (state=initialState, action) => {
-  // clone old state
-  const newState = {
-    ...state,
-    ingredients: { ...state.ingredients },
-  };
-
 	switch (action.type) {
     case (actionTypes.ADD_INGREDIENT):
-      newState.ingredients[action.ingredientName] += 1;
-      newState.totalPrice += INGREDIENT_PRICES[action.ingredientName];
-      return newState;
+      return modifyIngredients(state, action, 1);
     case (actionTypes.REMOVE_INGREDIENT):
-      newState.ingredients[action.ingredientName] -= 1;
-      newState.totalPrice -= INGREDIENT_PRICES[action.ingredientName];
-      return newState;
+      return modifyIngredients(state, action, -1);
     case (actionTypes.SET_INGREDIENTS):
-      newState.ingredients = action.ingredients;
-      newState.totalPrice = 4;
-      newState.error = false;
-      return newState;
+      return setIngredients(state, action);
     case (actionTypes.FETCH_INGREDIENTS_FAILED):
-      newState.error = true;
-      return newState;
+      return fetchIngredientsFailed(state, action);
     default:
       return state;
   }
+};
+
+const cloneState = state => {
+  return {
+    ...state,
+    ingredients: { ...state.ingredients },
+  };
+};
+
+const modifyIngredients = (state, action, n) => {
+  const newState = cloneState(state);
+  newState.ingredients[action.ingredientName] += n;
+  newState.totalPrice += n * INGREDIENT_PRICES[action.ingredientName];
+  return newState;
+};
+
+const setIngredients = (state, action) => {
+  const newState = cloneState(state);
+  newState.ingredients = action.ingredients;
+  newState.totalPrice = 4;
+  newState.error = false;
+  return newState;
+};
+
+const fetchIngredientsFailed = (state, action) => {
+  const newState = cloneState(state);
+  newState.error = true;
+  return newState;
 };
 
 export default reducer;

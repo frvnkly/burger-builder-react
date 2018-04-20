@@ -145,7 +145,7 @@ class ContactData extends Component {
   }
 
   render() {
-    const formElementsArray =[];
+    const formElementsArray = [];
     for (const key in this.state.orderForm) {
       formElementsArray.push({
         id: key,
