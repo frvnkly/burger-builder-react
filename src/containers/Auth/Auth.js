@@ -106,7 +106,7 @@ class Auth extends Component {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onAuth: (email, passwpord) => dispatch(actions.auth()),
+    onAuth: (email, password) => dispatch(actions.auth(email, password)),
   };
 };
 
