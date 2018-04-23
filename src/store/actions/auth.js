@@ -33,7 +33,6 @@ export const auth = (email, password, isSignup) => {
       password: password,
       returnSecureToken: true,
     };
-    console.log(authData);
     let url = `https://www.googleapis.com/identitytoolkit/v3/relyingparty/signupNewUser?key=${API_KEY}`;
     if (!isSignup) {
       url = `https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyPassword?key=${API_KEY}`;
@@ -44,8 +43,7 @@ export const auth = (email, password, isSignup) => {
         dispatch(authSuccess(res.data.idToken, res.data.localId));
       })
       .catch(err => {
-        console.log(err);
-        dispatch(authFail(err));
+        dispatch(authFail(err.response.data.error));
       });
   };
 };
