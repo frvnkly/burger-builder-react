@@ -11,6 +11,7 @@ const initialState = {
 	ingredients: null,
   totalPrice: 4,
   error: false,
+  building: false,
 };
 
 const reducer = (state=initialState, action) => {
@@ -39,6 +40,7 @@ const modifyIngredients = (state, action, n) => {
   const newState = cloneState(state);
   newState.ingredients[action.ingredientName] += n;
   newState.totalPrice += n * INGREDIENT_PRICES[action.ingredientName];
+  newState.building = true;
   return newState;
 };
 
@@ -47,6 +49,7 @@ const setIngredients = (state, action) => {
   newState.ingredients = action.ingredients;
   newState.totalPrice = 4;
   newState.error = false;
+  newState.building = false;
   return newState;
 };
 
